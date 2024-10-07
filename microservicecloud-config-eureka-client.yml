@@ -16,7 +16,7 @@ spring:
 eureka:
   instance:
     hostname: eureka7001.com
-  clinet:
+  client:
     #当前的eureka-server自己不注册进服务列表中
     register-with-eureka: false
     fetch-registry: false
