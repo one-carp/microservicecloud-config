@@ -1,0 +1,51 @@
+spring:
+  profiles:
+    active:
+    - dev
+
+---
+server:
+  port: 8001
+  
+spring:
+  profiles: dev
+  application:
+    name: microservicecloud-config-dept-client
+  datasource:
+    # 当前数据源操作类型
+    type: com.alibaba.druid.pool.DruidDataSource
+    # mysql驱动包
+    driver-class-name: org.gjt.mm.mysql.Driver
+    # 数据库名称
+    url: jdbc:mysql://localhost:3306/cloudDB01
+    username: root
+    password: mysqladmin
+    dbcp2:
+      # 数据库连接池最小维持连接数
+      min-idle: 5
+      # 初始化连接数
+      initial-size: 5
+      # 最大连接数
+      max-total: 5
+      # 等待连接获取的最大超时时间
+      max-wait-millis: 200
+
+mybatis:
+  config-location: classpath:mybatis/mybatis.cfg.xml
+  type-aliases-pacaage:  com.maory.springcloud.entities
+  mapper-locations:
+  - classpath: mybatis/mapper/**/*.xml
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka7001.com:7001/eureka
+  instance:
+    instance-id: dept-8001.com
+    prefer-ip-address: true
+
+info:
+  app.name: maory-microservicecloud-springcloudconfig02
+  company.name: www.maory.com
+  build.artifactId: $project.artifactId$
+  build.version: $project.version$
